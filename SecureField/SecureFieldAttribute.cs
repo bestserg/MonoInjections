@@ -13,19 +13,5 @@ namespace SecureField
         {
 
         }
-
-        //public int MethodGet(MethodBase currentMethod, int val)
-        //{
-        //    var methodName = String.Format("{0}.{1}", currentMethod.ReflectedType.Name, currentMethod.Name.Substring(4));
-        //    var sf = SecureFieldBuilder.Factory();
-        //    return sf.GetSecureField(methodName, val);
-        //}
-        //public int MethodSet(MethodBase currentMethod, int val)
-        //{
-        //    var methodName = String.Format("{0}.{1}", currentMethod.ReflectedType.Name, currentMethod.Name.Substring(4));
-        //    var sf = SecureFieldBuilder.Factory();
-        //    return sf.SetSecureField(methodName, val);
-        //}
-
     }
 }
