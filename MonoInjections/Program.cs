@@ -11,6 +11,12 @@ namespace MonoInjections
 {
     class Program
     {
+        private static TypeReference _secureFieldBuilderRef;
+        private static MethodReference _secureFieldFactoryRef;
+        private static MethodReference _getSecureFieldRef;
+        private static MethodReference _setSecureFieldRef;
+        private static TypeReference _methodBaseRef;
+        private static MethodReference _getCurrentMethodRef;
 
         static void Main(string[] args)
         {
@@ -26,115 +32,91 @@ namespace MonoInjections
         {
             var assembly = AssemblyDefinition.ReadAssembly(path);
 
-            // ссылка на GetCurrentMethod()
-            var getCurrentMethodRef = assembly.MainModule.Import(typeof(MethodBase).GetMethod("GetCurrentMethod"));
-            // ссылка на Attribute.GetCustomAttribute()
-            //var getCustomAttributeRef = assembly.MainModule.Import(typeof(Attribute).GetMethod("GetCustomAttribute", new Type[] { typeof(MethodInfo), typeof(Type) }));
-            // ссылка на Type.GetTypeFromHandle() - аналог typeof()
-            
-            // ссылка на тип MethodBase 
-            var methodBaseRef = assembly.MainModule.Import(typeof(MethodBase));
-            var secureFieldBuilderRef = assembly.MainModule.Import(typeof(SecureFieldBuilder));
-            var secureFieldFactoryRef = assembly.MainModule.Import(typeof(SecureFieldBuilder).GetMethod("Factory"));
-            var getSecureFieldRef = assembly.MainModule.Import(typeof(SecureFieldBuilder).GetMethod("GetSecureField"));
-            var setSecureFieldRef = assembly.MainModule.Import(typeof(SecureFieldBuilder).GetMethod("SetSecureField"));
+            _methodBaseRef          = assembly.MainModule.Import(typeof(MethodBase));
+            _getCurrentMethodRef    = assembly.MainModule.Import(typeof(MethodBase).GetMethod("GetCurrentMethod"));
+            _secureFieldBuilderRef  = assembly.MainModule.Import(typeof(SecureFieldBuilder));
+            _secureFieldFactoryRef  = assembly.MainModule.Import(typeof(SecureFieldBuilder).GetMethod("Factory"));
+            _getSecureFieldRef      = assembly.MainModule.Import(typeof(SecureFieldBuilder).GetMethod("GetSecureField"));
+            _setSecureFieldRef      = assembly.MainModule.Import(typeof(SecureFieldBuilder).GetMethod("SetSecureField"));
 
             foreach (var typeDef in assembly.MainModule.Types)
             {
-                foreach (var method in typeDef.Properties.Where(m => m.CustomAttributes.Where(
-                  attr => attr.AttributeType.Name == "SecureFieldAttribute").FirstOrDefault() != null))
+                foreach (var prop in typeDef.Properties.Where(m => m.CustomAttributes.FirstOrDefault(attr => attr.AttributeType.Name == "SecureFieldAttribute") != null))
                 {
-                    ILProcessor ilProc;
-                    // создаем две локальных переменных для attribute, currentMethod и parameters
-                    var currentMethodVar = new VariableDefinition(methodBaseRef);
-                    var builderVar = new VariableDefinition(secureFieldBuilderRef);
-                    #region GetMethod
-                    ilProc = method.GetMethod.Body.GetILProcessor();
-                    // необходимо установить InitLocals в true, так как если он находился в false (в методе изначально не было локальных переменных)
-                    // а теперь локальные переменные появятся - верификатор IL кода выдаст ошибку.
-                    method.GetMethod.Body.InitLocals = true;
-                    
-                    ilProc.Body.Variables.Add(currentMethodVar);
-                    ilProc.Body.Variables.Add(builderVar);
-                    ilProc.Body.Instructions.Clear();
-                    
-                    ilProc.Append(Instruction.Create(OpCodes.Ret));
-                    Instruction firstInstruction = ilProc.Body.Instructions[0];
-                    ilProc.InsertBefore(firstInstruction, Instruction.Create(OpCodes.Nop));
-                    // получаем текущий метод
-                    ilProc.InsertBefore(firstInstruction, Instruction.Create(OpCodes.Call, getCurrentMethodRef));
-                    // помещаем результат со стека в переменную currentMethodVar
-                    ilProc.InsertBefore(firstInstruction, Instruction.Create(OpCodes.Stloc, currentMethodVar));
-                    // Вызываем SecureFieldFactory
-                    ilProc.InsertBefore(firstInstruction, Instruction.Create(OpCodes.Call, secureFieldFactoryRef));
-                    // помещаем результат со стека в переменную builderVar
-                    ilProc.InsertBefore(firstInstruction, Instruction.Create(OpCodes.Stloc, builderVar));
-
-                    ilProc.InsertBefore(firstInstruction, Instruction.Create(OpCodes.Ldloc, builderVar));
-                    ilProc.InsertBefore(firstInstruction, Instruction.Create(OpCodes.Ldloc, currentMethodVar));
-                    ilProc.InsertBefore(firstInstruction, Instruction.Create(OpCodes.Ldarg_0));
-
-                    ilProc.InsertBefore(firstInstruction, Instruction.Create(OpCodes.Callvirt, getSecureFieldRef));
-
-                    
-                    #endregion
-                    #region SetMethod
-                    ilProc = method.SetMethod.Body.GetILProcessor();
-                    // необходимо установить InitLocals в true, так как если он находился в false (в методе изначально не было локальных переменных)
-                    // а теперь локальные переменные появятся - верификатор IL кода выдаст ошибку.
-                    method.SetMethod.Body.InitLocals = true;
-                    // создаем три локальных переменных для attribute, currentMethod и parameters
-                    ilProc.Body.Variables.Add(currentMethodVar);
-                    ilProc.Body.Variables.Add(builderVar);
-                    ilProc.Body.Instructions.Clear();
-
-                    ilProc.Append(Instruction.Create(OpCodes.Ret));
-                    firstInstruction = ilProc.Body.Instructions[0];
-                    ilProc.InsertBefore(firstInstruction, Instruction.Create(OpCodes.Nop));
-                    // получаем текущий метод
-                    ilProc.InsertBefore(firstInstruction, Instruction.Create(OpCodes.Call, getCurrentMethodRef));
-                    // помещаем результат со стека в переменную currentMethodVar
-                    ilProc.InsertBefore(firstInstruction, Instruction.Create(OpCodes.Stloc, currentMethodVar));
-                    // Вызываем SecureFieldFactory
-                    ilProc.InsertBefore(firstInstruction, Instruction.Create(OpCodes.Call, secureFieldFactoryRef));
-                    // помещаем результат со стека в переменную builderVar
-                    ilProc.InsertBefore(firstInstruction, Instruction.Create(OpCodes.Stloc, builderVar));
-
-                    ilProc.InsertBefore(firstInstruction, Instruction.Create(OpCodes.Ldloc, builderVar));
-                    ilProc.InsertBefore(firstInstruction, Instruction.Create(OpCodes.Ldloc, currentMethodVar));
-                    ilProc.InsertBefore(firstInstruction, Instruction.Create(OpCodes.Ldarg_0));
-                    ilProc.InsertBefore(firstInstruction, Instruction.Create(OpCodes.Ldarg_1));
-
-                    ilProc.InsertBefore(firstInstruction, Instruction.Create(OpCodes.Callvirt, setSecureFieldRef));
-
-                    
-                    #endregion
+                    ReplaceGetMethod(prop);
+                    ReplaceSetMethod(prop);
                 }
             }
             assembly.Write(path);
         }
-  
 
-        static void Inject(string assemblyPath)
+        private static void ReplaceSetMethod(PropertyDefinition prop)
         {
-            // считываем сборку в формате Mono.Cecil
-            var assembly = AssemblyDefinition.ReadAssembly(assemblyPath);
-            // получаем метод Console.WriteLine, используя стандартные методы Reflection
-            var writeLineMethod = typeof(Console).GetMethod("WriteLine", new Type[] { typeof(string) });
-            // создаем ссылку на метод, полученный Reflection, для использования в Mono.Cecil
-            var writeLineRef = assembly.MainModule.Import(writeLineMethod);
-            foreach (var typeDef in assembly.MainModule.Types)
-            {
-                foreach (var method in typeDef.Methods)
-                {
-                    // Для каждого метода в полученной сборке
-                    // Загружаем на стек строку "Inject!"
-                    method.Body.Instructions.Insert(0, Instruction.Create(OpCodes.Ldstr, "Inject!"));
-                    // Вызываем метод Console.WriteLine, параметры он берет со стека - в данном случае строку "Injected".
-                    method.Body.Instructions.Insert(1, Instruction.Create(OpCodes.Call, writeLineRef));
-                }
-            }
-            assembly.Write(assemblyPath);
+            // создаем две локальных переменных для attribute, currentMethod и parameters
+            var currentMethodVar = new VariableDefinition(_methodBaseRef);
+            var builderVar = new VariableDefinition(_secureFieldBuilderRef);
+
+            var ilProc = prop.GetMethod.Body.GetILProcessor();
+            // необходимо установить InitLocals в true, так как если он находился в false (в методе изначально не было локальных переменных)
+            // а теперь локальные переменные появятся - верификатор IL кода выдаст ошибку.
+            prop.SetMethod.Body.InitLocals = true;
+            // создаем три локальных переменных для attribute, currentMethod и parameters
+            ilProc.Body.Variables.Add(currentMethodVar);
+            ilProc.Body.Variables.Add(builderVar);
+            ilProc.Body.Instructions.Clear();
+
+            ilProc.Append(Instruction.Create(OpCodes.Ret));
+            var firstInstruction = ilProc.Body.Instructions[0];
+            ilProc.InsertBefore(firstInstruction, Instruction.Create(OpCodes.Nop));
+            // получаем текущий метод
+            ilProc.InsertBefore(firstInstruction, Instruction.Create(OpCodes.Call, _getCurrentMethodRef));
+            // помещаем результат со стека в переменную currentMethodVar
+            ilProc.InsertBefore(firstInstruction, Instruction.Create(OpCodes.Stloc, currentMethodVar));
+            // Вызываем SecureFieldFactory
+            ilProc.InsertBefore(firstInstruction, Instruction.Create(OpCodes.Call, _secureFieldFactoryRef));
+            // помещаем результат со стека в переменную builderVar
+            ilProc.InsertBefore(firstInstruction, Instruction.Create(OpCodes.Stloc, builderVar));
+
+            ilProc.InsertBefore(firstInstruction, Instruction.Create(OpCodes.Ldloc, builderVar));
+            ilProc.InsertBefore(firstInstruction, Instruction.Create(OpCodes.Ldloc, currentMethodVar));
+            ilProc.InsertBefore(firstInstruction, Instruction.Create(OpCodes.Ldarg_0));
+            ilProc.InsertBefore(firstInstruction, Instruction.Create(OpCodes.Ldarg_1));
+
+            ilProc.InsertBefore(firstInstruction, Instruction.Create(OpCodes.Callvirt, _setSecureFieldRef));
+        }
+
+        private static void ReplaceGetMethod(PropertyDefinition prop)
+        {
+            // создаем две локальных переменных для attribute, currentMethod и parameters
+            var currentMethodVar = new VariableDefinition(_methodBaseRef);
+            var builderVar = new VariableDefinition(_secureFieldBuilderRef);
+
+            var ilProc = prop.GetMethod.Body.GetILProcessor();
+            // необходимо установить InitLocals в true, так как если он находился в false (в методе изначально не было локальных переменных)
+            // а теперь локальные переменные появятся - верификатор IL кода выдаст ошибку.
+            prop.GetMethod.Body.InitLocals = true;
+
+            ilProc.Body.Variables.Add(currentMethodVar);
+            ilProc.Body.Variables.Add(builderVar);
+            ilProc.Body.Instructions.Clear();
+
+            ilProc.Append(Instruction.Create(OpCodes.Ret));
+            var firstInstruction = ilProc.Body.Instructions[0];
+            ilProc.InsertBefore(firstInstruction, Instruction.Create(OpCodes.Nop));
+            // получаем текущий метод
+            ilProc.InsertBefore(firstInstruction, Instruction.Create(OpCodes.Call, _getCurrentMethodRef));
+            // помещаем результат со стека в переменную currentMethodVar
+            ilProc.InsertBefore(firstInstruction, Instruction.Create(OpCodes.Stloc, currentMethodVar));
+            // Вызываем SecureFieldFactory
+            ilProc.InsertBefore(firstInstruction, Instruction.Create(OpCodes.Call, _secureFieldFactoryRef));
+            // помещаем результат со стека в переменную builderVar
+            ilProc.InsertBefore(firstInstruction, Instruction.Create(OpCodes.Stloc, builderVar));
+
+            ilProc.InsertBefore(firstInstruction, Instruction.Create(OpCodes.Ldloc, builderVar));
+            ilProc.InsertBefore(firstInstruction, Instruction.Create(OpCodes.Ldloc, currentMethodVar));
+            ilProc.InsertBefore(firstInstruction, Instruction.Create(OpCodes.Ldarg_0));
+
+            ilProc.InsertBefore(firstInstruction, Instruction.Create(OpCodes.Callvirt, _getSecureFieldRef));
         }
 
         static void ProtectMethod(string path, string methodName)

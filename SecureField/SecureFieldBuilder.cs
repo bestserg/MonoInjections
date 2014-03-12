@@ -13,7 +13,9 @@ namespace SecureField
         private static Hashtable _hash = new Hashtable();
         private static Random _rand = new Random();
 
-        protected SecureFieldBuilder() { }
+        protected SecureFieldBuilder()
+        {
+        }
 
         static public SecureFieldBuilder Factory()
         {
@@ -40,7 +42,7 @@ namespace SecureField
             if (_hash.ContainsKey(methodName))
                 _hash[methodName] = mask;
             else
-            {
+            { 
                 _hash.Add(methodName, mask);
             }
 
