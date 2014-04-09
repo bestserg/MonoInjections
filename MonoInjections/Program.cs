@@ -11,6 +11,7 @@ namespace MonoInjections
 {
     class Program
     {
+        private const string RepPath = @"C:\GitRepository\MonoInjections\{0}\bin\Debug\{0}.exe";
         private static TypeReference _secureFieldBuilderRef;
         private static MethodReference _secureFieldFactoryRef;
         private static MethodReference _getSecureFieldRef;
@@ -23,7 +24,7 @@ namespace MonoInjections
             //if (args.Length == 0)
             //    return;
             //string assemblyPath = args[0];
-            var assemblyPath = @"C:\Users\SerG\Documents\Visual Studio 2010\Projects\MonoInjections\Test\bin\Debug\Test.exe";
+            var assemblyPath = string.Format(RepPath, "Test");
             //Inject(assemblyPath);
             InjectToAssembly(assemblyPath);
         }
@@ -56,7 +57,7 @@ namespace MonoInjections
             var currentMethodVar = new VariableDefinition(_methodBaseRef);
             var builderVar = new VariableDefinition(_secureFieldBuilderRef);
 
-            var ilProc = prop.GetMethod.Body.GetILProcessor();
+            var ilProc = prop.SetMethod.Body.GetILProcessor();
             // необходимо установить InitLocals в true, так как если он находился в false (в методе изначально не было локальных переменных)
             // а теперь локальные переменные появятся - верификатор IL кода выдаст ошибку.
             prop.SetMethod.Body.InitLocals = true;

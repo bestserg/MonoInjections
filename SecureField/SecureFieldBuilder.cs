@@ -38,7 +38,7 @@ namespace SecureField
             var numField = method.ReflectedType.GetField(method.Name.Substring(3).ToLower(), BindingFlags.NonPublic | BindingFlags.Instance);
 
             var methodName = method.GetPropertyName();
-            int mask = _rand.Next(1000);
+            int mask = 10;// _rand.Next(1000);
             if (_hash.ContainsKey(methodName))
                 _hash[methodName] = mask;
             else
