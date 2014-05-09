@@ -10,28 +10,33 @@ namespace Test
 {
     class Values
     {
+
+        //private float _numberWithField;
+
+        //[SecureField]
+        //public float NumberWithField
+        //{ get { return _numberWithField; } set { _numberWithField = value; } }
+
         private float _number;
 
         [SecureField]
-        public float Number 
-        //{ 
-        //    get { return _number; } 
-        //    set { _number = value; } 
+        public float Number
+        { get { return _number; } set { _number = value; } }
+        //{
+        //    get
+        //    {
+        //        var currentMethod = MethodBase.GetCurrentMethod();
+        //        var sf = SecureFieldBuilder.Factory();
+        //        return sf.GetSecureField(currentMethod, this);
+        //    }
+        //    set
+        //    {
+        //        var currentMethod = MethodBase.GetCurrentMethod();
+        //        var sf = SecureFieldBuilder.Factory();
+        //        sf.SetSecureField(currentMethod, this, value);
+        //    }
         //}
-        {
-            get
-            {
-                var currentMethod = MethodBase.GetCurrentMethod();
-                var sf = SecureFieldBuilder.Factory();
-                return sf.GetSecureField(currentMethod, this);
-            }
-            set
-            {
-                var currentMethod = MethodBase.GetCurrentMethod();
-                var sf = SecureFieldBuilder.Factory();
-                sf.SetSecureField(currentMethod, this, value);
-            }
-        }
+        
 
         //var currentMethod = MethodBase.GetCurrentMethod();
         //var propName = currentMethod.Name.Substring(4);

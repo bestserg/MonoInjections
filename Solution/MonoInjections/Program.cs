@@ -11,7 +11,7 @@ namespace MonoInjections
 {
     class Program
     {
-        private const string RepPath = @"C:\GitRepository\MonoInjections\{0}\bin\Debug\{0}.exe";
+        private const string RepPath = @"C:\GitRepository\MonoInjections\Solution\{0}\bin\Debug\{0}.exe";
         private static TypeReference _secureFieldBuilderRef;
         private static MethodReference _secureFieldFactoryRef;
         private static MethodReference _getSecureFieldRef;
@@ -42,8 +42,13 @@ namespace MonoInjections
 
             foreach (var typeDef in assembly.MainModule.Types)
             {
-                foreach (var prop in typeDef.Properties.Where(m => m.CustomAttributes.FirstOrDefault(attr => attr.AttributeType.Name == "SecureFieldAttribute") != null))
+                var properties = typeDef.Properties
+                                        .Where(p => p.CustomAttributes.Any(attr => attr.AttributeType.Name == "SecureFieldAttribute")
+                                               && !p.Name.StartsWith("_"));
+                foreach (var prop in properties)
                 {
+                    //var field = new FieldDefinition("_" + prop.Name.ToLower(),Mono.Cecil.FieldAttributes.Private, prop.PropertyType);
+                    //typeDef.Fields.Add(field);
                     ReplaceGetMethod(prop);
                     ReplaceSetMethod(prop);
                 }
