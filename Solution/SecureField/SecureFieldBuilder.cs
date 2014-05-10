@@ -12,9 +12,9 @@ namespace SecureField
 {
     public class SecureFieldBuilder
     {
-        private static readonly SecureFieldBuilder _instance = new SecureFieldBuilder();
-        private static Hashtable _hash = new Hashtable();
-        private static Random _rand = new Random();
+        private static readonly SecureFieldBuilder Instance = new SecureFieldBuilder();
+        private static readonly Hashtable Hash = new Hashtable();
+        private static readonly Random Rand = new Random();
 
         protected SecureFieldBuilder()
         {
@@ -22,14 +22,14 @@ namespace SecureField
 
         static public SecureFieldBuilder Factory()
         {
-            return _instance;
+            return Instance;
         }
 
         public object GetSecureField(MethodBase method, object obj)
         {
             var numField = method.ReflectedType.GetField(method.GetFieldName(), BindingFlags.NonPublic | BindingFlags.Instance);
             var fullPropName = method.GetFullPropertyName();
-            var mask = (byte[])_hash[fullPropName];
+            var mask = (byte[])Hash[fullPropName];
             var val = numField.GetValue(obj);
             if (mask == null)
                 return val;
@@ -46,14 +46,14 @@ namespace SecureField
 
             var bytes = new BitValue(value);
             var mask = new byte[bytes.Bytes.Length];
-            _rand.NextBytes(mask);
+            Rand.NextBytes(mask);
             bytes.Xor(mask);
 
-            if (_hash.ContainsKey(fullPropName))
-                _hash[fullPropName] = mask;
+            if (Hash.ContainsKey(fullPropName))
+                Hash[fullPropName] = mask;
             else
             {
-                _hash.Add(fullPropName, mask);
+                Hash.Add(fullPropName, mask);
             }
             numField.SetValue(obj, bytes.ToValue());
         }

@@ -26,22 +26,43 @@ namespace Test
             while (true) 
             {
                 Console.Write("Enter: ");
-                var str = Console.ReadLine();
-                if (str == "p")
-                {
-                    Console.WriteLine("value: {0}", val.Number);
-                    Console.ReadLine();
+                var ch = Console.ReadKey().KeyChar;
+                switch (ch)
+                { 
+                    case 'p':
+                        Console.WriteLine();
+                        Console.WriteLine(val.ValuesLog());
+                        Console.ReadLine();
+                        break;
+                    case 'm':
+                        Console.WriteLine();
+                        Console.WriteLine(val.MemoryLog());
+                        Console.ReadLine();
+                        break;
+                    case 'L':
+                        Console.WriteLine();
+                        Console.WriteLine(val.ValuesLog());
+                        Console.WriteLine(val.MemoryLog());
+                        Console.ReadLine();
+                        break;
+                    case 'c':
+                        val.CharVal = char.Parse(Console.ReadLine());
+                        break;
+                    case 'd':
+                        val.DoubleVal = double.Parse(Console.ReadLine());
+                        break;
+                    case 'i':
+                        val.Int32Val = int.Parse(Console.ReadLine());
+                        break;
+                    case 'u':
+                        val.UInt16Val = ushort.Parse(Console.ReadLine());
+                        break;
+                    case 'q':
+                        return;
                 }
-                else
-                {
-                    var n = int.Parse(str);
-                    val.Number = n;
-                }
-                
+               
                 Console.Clear();
             }
         }
-
-
     }
 }
