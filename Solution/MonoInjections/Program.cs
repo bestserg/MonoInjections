@@ -50,8 +50,8 @@ namespace MonoInjections
                     var fieldName = String.Format("_{0}{1}", char.ToLower(prop.Name[0]), prop.Name.Substring(1));
                     var field = new FieldDefinition(fieldName, Mono.Cecil.FieldAttributes.Private, prop.PropertyType);
                     typeDef.Fields.Add(field);
-                    ReplaceGetMethod(prop.GetMethod);
-                    ReplaceSetMethod(prop.SetMethod);
+                    ReplaceGetMethod(prop);
+                    ReplaceSetMethod(prop);
                 }
             }
             assembly.Write(path);
@@ -61,8 +61,9 @@ namespace MonoInjections
          * MethodBase currentMethod = MethodBase.GetCurrentMethod();
          * SecureFieldBuilder.Factory().SetSecureField(currentMethod, this, value);
          */
-        private static void ReplaceSetMethod(MethodDefinition method)
+        private static void ReplaceSetMethod(PropertyDefinition prop)
         {
+            var method = prop.SetMethod;
             var ilProc = method.Body.GetILProcessor();
             // необходимо установить InitLocals в true, так как если он находился в false (в методе изначально не было локальных переменных)
             // а теперь локальные переменные появятся - верификатор IL кода выдаст ошибку.
@@ -98,8 +99,9 @@ namespace MonoInjections
             ilProc.InsertBefore(firstInstruction, Instruction.Create(OpCodes.Callvirt, _setSecureFieldRef));
         }
 
-        private static void ReplaceGetMethod(MethodDefinition method)
+        private static void ReplaceGetMethod(PropertyDefinition prop)
         {
+            var method = prop.GetMethod;
             var ilProc = method.Body.GetILProcessor();
             // необходимо установить InitLocals в true, так как если он находился в false (в методе изначально не было локальных переменных)
             // а теперь локальные переменные появятся - верификатор IL кода выдаст ошибку.
