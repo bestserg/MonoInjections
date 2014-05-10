@@ -47,8 +47,9 @@ namespace MonoInjections
                                                && !p.Name.StartsWith("_"));
                 foreach (var prop in properties)
                 {
-                    //var field = new FieldDefinition("_" + prop.Name.ToLower(),Mono.Cecil.FieldAttributes.Private, prop.PropertyType);
-                    //typeDef.Fields.Add(field);
+                    var fieldName = String.Format("_{0}{1}", char.ToLower(prop.Name[0]), prop.Name.Substring(1));
+                    var field = new FieldDefinition(fieldName, Mono.Cecil.FieldAttributes.Private, prop.PropertyType);
+                    typeDef.Fields.Add(field);
                     ReplaceGetMethod(prop);
                     ReplaceSetMethod(prop);
                 }
@@ -87,6 +88,7 @@ namespace MonoInjections
             ilProc.InsertBefore(firstInstruction, Instruction.Create(OpCodes.Ldloc, currentMethodVar));
             ilProc.InsertBefore(firstInstruction, Instruction.Create(OpCodes.Ldarg_0));
             ilProc.InsertBefore(firstInstruction, Instruction.Create(OpCodes.Ldarg_1));
+            ilProc.InsertBefore(firstInstruction, Instruction.Create(OpCodes.Box, prop.PropertyType));
 
             ilProc.InsertBefore(firstInstruction, Instruction.Create(OpCodes.Callvirt, _setSecureFieldRef));
         }
@@ -123,6 +125,7 @@ namespace MonoInjections
             ilProc.InsertBefore(firstInstruction, Instruction.Create(OpCodes.Ldarg_0));
 
             ilProc.InsertBefore(firstInstruction, Instruction.Create(OpCodes.Callvirt, _getSecureFieldRef));
+            ilProc.InsertBefore(firstInstruction, Instruction.Create(OpCodes.Unbox_Any, prop.PropertyType));
         }
 
         static void ProtectMethod(string path, string methodName)

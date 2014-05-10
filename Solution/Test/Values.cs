@@ -17,23 +17,21 @@ namespace Test
         //public float NumberWithField
         //{ get { return _numberWithField; } set { _numberWithField = value; } }
 
-        private float _number;
-
         [SecureField]
-        public float Number
-        { get { return _number; } set { _number = value; } }
+        public int Number { get; set; }
+
         //{
         //    get
         //    {
         //        var currentMethod = MethodBase.GetCurrentMethod();
-        //        var sf = SecureFieldBuilder.Factory();
-        //        return sf.GetSecureField(currentMethod, this);
+        //        var builder = SecureFieldBuilder.Factory();
+        //        return (int)builder.GetSecureField(currentMethod, this);
         //    }
         //    set
         //    {
         //        var currentMethod = MethodBase.GetCurrentMethod();
-        //        var sf = SecureFieldBuilder.Factory();
-        //        sf.SetSecureField(currentMethod, this, value);
+        //        var builder = SecureFieldBuilder.Factory();
+        //        builder.SetSecureField(currentMethod, this, (object)value);
         //    }
         //}
         

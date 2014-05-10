@@ -25,26 +25,11 @@ namespace SecureField
             return _instance;
         }
 
-        //public int GetSecureField(MethodBase method, object obj)
-        //{
-        //    var numField = method.ReflectedType.GetField(method.Name.Substring(3).ToLower(), BindingFlags.NonPublic | BindingFlags.Instance);
-        //    var methodName = method.GetPropertyName();
-        //    var mask = _hash[methodName];
-        //    if (mask == null)
-        //        return 0;
-        //    var type = numField.FieldType;
-        //    MethodInfo castMethod = this.GetType().GetMethod("Cast", BindingFlags.NonPublic | BindingFlags.Static).MakeGenericMethod(type);
-        //    var castedObject = castMethod.Invoke(null, new object[] { mask });
-            
-        //    var val = (int)numField.GetValue(obj);
-        //    int maskInt = (int)mask;
-        //    return val - maskInt;
-        //}
-        public dynamic GetSecureField(MethodBase method, object obj)
+        public object GetSecureField(MethodBase method, object obj)
         {
-            var numField = method.ReflectedType.GetField(method.Name.Substring(3).ToLower(), BindingFlags.NonPublic | BindingFlags.Instance);
-            var methodName = method.GetPropertyName();
-            var mask = (byte[])_hash[methodName];
+            var numField = method.ReflectedType.GetField(method.GetFieldName(), BindingFlags.NonPublic | BindingFlags.Instance);
+            var fullPropName = method.GetFullPropertyName();
+            var mask = (byte[])_hash[fullPropName];
             var val = numField.GetValue(obj);
             if (mask == null)
                 return val;
@@ -54,47 +39,35 @@ namespace SecureField
             return byteVal.ToValue();
         }
 
-        //public void SetSecureField(MethodBase method, object obj, int value)
-        //{
-        //    var numField = method.ReflectedType.GetField(method.Name.Substring(3).ToLower(), BindingFlags.NonPublic | BindingFlags.Instance);
-
-        //    var methodName = method.GetPropertyName();
-        //    int mask = 10;// _rand.Next(1000);
-        //    if (_hash.ContainsKey(methodName))
-        //        _hash[methodName] = mask;
-        //    else
-        //    { 
-        //        _hash.Add(methodName, mask);
-        //    }
-
-        //    //var mask = _rand.Next(1000);
-        //    numField.SetValue(obj, value + mask);
-        //}
         public void SetSecureField(MethodBase method, object obj, object value)
         {
-            var numField = method.ReflectedType.GetField(method.Name.Substring(3).ToLower(), BindingFlags.NonPublic | BindingFlags.Instance);
-            var methodName = method.GetPropertyName();
+            var numField = method.DeclaringType.GetField(method.GetFieldName(), BindingFlags.NonPublic | BindingFlags.Instance);
+            var fullPropName = method.GetFullPropertyName();
 
             var bytes = new BitValue(value);
             var mask = new byte[bytes.Bytes.Length];
             _rand.NextBytes(mask);
             bytes.Xor(mask);
 
-            if (_hash.ContainsKey(methodName))
-                _hash[methodName] = mask;
+            if (_hash.ContainsKey(fullPropName))
+                _hash[fullPropName] = mask;
             else
             {
-                _hash.Add(methodName, mask);
+                _hash.Add(fullPropName, mask);
             }
             numField.SetValue(obj, bytes.ToValue());
         }
     }
 
     static class MethodBaseExt 
-    { 
-        static public string GetPropertyName(this MethodBase m)
+    {
+        static public string GetFieldName(this MethodBase m)
         {
-            return String.Format("{0}.{1}", m.ReflectedType.Name, m.Name.Substring(4));
+            return String.Format("_{0}{1}", char.ToLower(m.Name[4]), m.Name.Substring(5)); 
+        }
+        static public string GetFullPropertyName(this MethodBase m)
+        {
+            return String.Format("{0}.{1}", m.DeclaringType.Name, m.Name.Substring(4));
         }
     }
     public static class ByteArrayExt 
@@ -143,8 +116,6 @@ namespace SecureField
                 case "Single":
                     _serializationType = SerializationType.Single; break;
             }
-
-            //Bytes = BitConverter.GetBytes((dynamic)obj);
 
             GetBytes(obj);
         }

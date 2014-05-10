@@ -34,7 +34,7 @@ namespace Test
                 }
                 else
                 {
-                    var n = float.Parse(str);
+                    var n = int.Parse(str);
                     val.Number = n;
                 }
                 
