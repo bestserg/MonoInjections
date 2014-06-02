@@ -10,20 +10,28 @@ namespace Test
 {
     class Values
     {
-        [SecureField]
-        public char CharVal { get; set; }
-
-        [SecureField]
-        public int Int32Val { get; set; }
-
-        [SecureField]
-        public ushort UInt16Val { get; set; }
-
-        [SecureField]
-        public double DoubleVal { get; set; }
+        //[SecureField]
+        //public char CharVal { get; set; }
 
         //[SecureField]
-        //public int Number { get; set; }
+        //public int Int32Val { get; set; }
+
+        //[SecureField]
+        //public ushort UInt16Val { get; set; }
+
+        //[SecureField]
+        //public double DoubleVal { get; set; }
+
+        private int _value;
+        public int Value { get { return _value; } set { _value = value; } }
+
+        [SecureField]
+        public int ProtectedValue { get; set; }
+
+        
+
+        //[SecureField]
+        //public int Number //{ get; set; }
         //{
         //    get
         //    {
