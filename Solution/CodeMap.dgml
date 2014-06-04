@@ -1,49 +1,70 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <DirectedGraph DataVirtualized="True" Layout="Sugiyama" xmlns="http://schemas.microsoft.com/vs/2009/dgml">
   <Nodes>
-    <Node Id="(@1 @5 @9 Member=.ctor)" Category="CodeSchema_Method" Bounds="-599.702127278646,-107.948147866934,81.6266666666667,25.959232" CodeSchemaProperty_IsConstructor="True" CodeSchemaProperty_IsPublic="True" CodeSchemaProperty_IsSpecialName="True" DelayedCrossGroupLinksState="Fetched" Label="Program" UseManualLocation="True" />
-    <Node Id="(@3 @7 @12 Member=(Name=GetSecureField OverloadingParameters=[(@14 Namespace=System.Reflection Type=MethodBase),(@14 Namespace=System Type=Object)]))" Category="CodeSchema_Method" Bounds="-450.920808867839,-400.986689333487,115.061405333333,25.9592319999999" CodeSchemaProperty_IsPublic="True" DelayedCrossGroupLinksState="Fetched" Label="GetSecureField" UseManualLocation="True" />
-    <Node Id="(@3 @7 @12 Member=(Name=SetSecureField OverloadingParameters=[(@14 Namespace=System.Reflection Type=MethodBase),(@14 Namespace=System Type=Object),(@14 Namespace=System Type=Object)]))" Category="CodeSchema_Method" Bounds="-450.693686046549,-345.027338747549,113.202893333333,25.9592319999999" CodeSchemaProperty_IsPublic="True" DelayedCrossGroupLinksState="Fetched" Label="SetSecureField" UseManualLocation="True" />
-    <Node Id="(@3 @7 Type=SecureFieldAttribute Member=.ctor)" Category="CodeSchema_Method" Bounds="-683.361192626953,-415.348218353018,143.59,25.96" CodeSchemaProperty_IsConstructor="True" CodeSchemaProperty_IsPublic="True" CodeSchemaProperty_IsSpecialName="True" DelayedCrossGroupLinksState="Fetched" Label="SecureFieldAttribute" />
-    <Node Id="@10" Category="CodeSchema_Class" Bounds="-623.810716519532,-149.067506747549,375.962905225586,199.003854149658" CodeSchemaProperty_IsInternal="True" DelayedChildNodesState="Incomplete" DelayedCrossGroupLinksState="Fetched" FetchedChildrenCount="13" Group="Expanded" Label="Program" />
-    <Node Id="@11" Category="CodeSchema_Class" Bounds="-703.361192626953,-455.348318353018,183.59,85.9602" CodeSchemaProperty_IsPublic="True" DelayedChildNodesState="Fetched" DelayedCrossGroupLinksState="Fetched" FetchedChildrenCount="1" Group="Expanded" Label="SecureFieldAttribute" UseManualLocation="True" />
-    <Node Id="@13" Category="CodeSchema_Class" Bounds="-473.040036365021,-498.643809767195,312.675510841583,199.575803019645" CodeSchemaProperty_IsPublic="True" DelayedChildNodesState="Incomplete" DelayedCrossGroupLinksState="Fetched" FetchedChildrenCount="8" Group="Expanded" Label="SecureFieldBuilder" UseManualLocation="True" />
-    <Node Id="@15" Category="CodeSchema_Method" Bounds="-468.110757028971,-109.067406747549,62.6152213333332,25.959232" CodeSchemaProperty_IsPrivate="True" CodeSchemaProperty_IsStatic="True" DelayedCrossGroupLinksState="Fetched" Label="Main" />
-    <Node Id="@17" Category="CodeSchema_Method" Bounds="-405.746091293945,3.97701540210886,137.89828,25.959232" CodeSchemaProperty_IsPrivate="True" CodeSchemaProperty_IsStatic="True" DelayedCrossGroupLinksState="Fetched" Label="ReplaceGetMethod" />
-    <Node Id="@18" Category="CodeSchema_Method" Bounds="-603.810716519531,3.97054567554636,136.039768,25.959232" CodeSchemaProperty_IsPrivate="True" CodeSchemaProperty_IsStatic="True" DelayedCrossGroupLinksState="Fetched" Label="ReplaceSetMethod" />
-    <Node Id="@19" Category="CodeSchema_Method" Bounds="-500.994352735026,-51.9887972809966,128.382565333333,25.959232" CodeSchemaProperty_IsPrivate="True" CodeSchemaProperty_IsStatic="True" DelayedCrossGroupLinksState="Fetched" Label="InjectToAssembly" />
-    <Node Id="@2" Category="CodeSchema_Assembly" Bounds="-663.810716519532,-229.067706747549,455.962905225586,319.004254149658" CodeSchemaProperty_StrongName="MonoInjections, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" DelayedChildNodesState="Fetched" DelayedCrossGroupLinksState="Fetched" FetchedChildrenCount="1" FilePath="$(ec46f423-d757-4dea-a651-9848123a234c.OutputPath)" Group="Expanded" Label="MonoInjections.exe" UseManualLocation="True" />
-    <Node Id="@20" Category="CodeSchema_Method" Bounds="-453.040036365021,-458.643709767195,164.345819800353,25.9324525549158" CodeSchemaProperty_IsConstructor="True" CodeSchemaProperty_IsPrivate="True" CodeSchemaProperty_IsSpecialName="True" CodeSchemaProperty_IsStatic="True" DelayedCrossGroupLinksState="Fetched" Label="static SecureFieldBuilder" />
-    <Node Id="@21" Category="CodeSchema_Method" Bounds="-258.152440190104,-439.582606081534,74.6537573333333,25.9592319999999" CodeSchemaProperty_IsPublic="True" CodeSchemaProperty_IsStatic="True" DelayedCrossGroupLinksState="Fetched" Label="Factory" />
-    <Node Id="@22" Category="CodeSchema_Field" Bounds="-261.286597523438,-383.623240236807,80.9220720000001,25.959232" CodeSchemaProperty_IsPrivate="True" CodeSchemaProperty_IsStatic="True" DelayedCrossGroupLinksState="Fetched" Label="Instance" />
-    <Node Id="@4" Category="CodeSchema_Assembly" AssemblyTimestamp="06/01/2014 08:40:02" Bounds="-743.361192626953,-578.644009767195,622.996667103516,319.576203019645" CodeSchemaProperty_StrongName="SecureField, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" DelayedChildNodesState="Incomplete" DelayedCrossGroupLinksState="Fetched" FetchedChildrenCount="2" FilePath="$(47c86e64-d6b2-45b4-866f-15faa0a77f4b.OutputPath)" Group="Expanded" Label="SecureField.dll" UseManualLocation="True" />
-    <Node Id="@6" Category="CodeSchema_Namespace" Bounds="-643.810716519532,-189.067606747549,415.962905225586,259.004054149658" DelayedChildNodesState="Fetched" DelayedCrossGroupLinksState="Fetched" FetchedChildrenCount="1" Group="Expanded" Label="MonoInjections" />
-    <Node Id="@8" Category="CodeSchema_Namespace" Bounds="-723.361192626953,-538.643909767195,582.996667103516,259.576003019645" DelayedChildNodesState="Incomplete" DelayedCrossGroupLinksState="Fetched" FetchedChildrenCount="5" Group="Expanded" Label="SecureField" UseManualLocation="True" />
+    <Node Id="(@1 @10 @11 Member=.ctor)" Category="CodeSchema_Method" Bounds="-374.286032772791,-907.108644320313,81.6266666666666,25.959232" CodeSchemaProperty_IsConstructor="True" CodeSchemaProperty_IsPublic="True" CodeSchemaProperty_IsSpecialName="True" DelayedCrossGroupLinksState="Fetched" Label="Program" UseManualLocation="True" />
+    <Node Id="(@3 @7 @14 Member=Hash)" Category="CodeSchema_Field" Bounds="-835.915507023442,-1034.29601278599,63.51,25.96" CodeSchemaProperty_IsPrivate="True" CodeSchemaProperty_IsStatic="True" DelayedCrossGroupLinksState="Fetched" Label="Hash" UseManualLocation="True" />
+    <Node Id="(@3 @7 @14 Member=Rand)" Category="CodeSchema_Field" Bounds="-831.561439640629,-978.335912785994,64.14,25.96" CodeSchemaProperty_IsPrivate="True" CodeSchemaProperty_IsStatic="True" DelayedCrossGroupLinksState="Fetched" Label="Rand" UseManualLocation="True" />
+    <Node Id="(@3 @7 Type=SecureFieldAttribute Member=.ctor)" Category="CodeSchema_Method" Bounds="-747.84616254102,-675.944189153182,143.59,25.96" CodeSchemaProperty_IsConstructor="True" CodeSchemaProperty_IsPublic="True" CodeSchemaProperty_IsSpecialName="True" DelayedCrossGroupLinksState="Fetched" Label="SecureFieldAttribute" UseManualLocation="True" />
+    <Node Id="@12" Category="CodeSchema_Class" Bounds="-415.679961369145,-948.655775885439,375.969069776367,199.42511165625" CodeSchemaProperty_IsInternal="True" DelayedChildNodesState="Incomplete" DelayedCrossGroupLinksState="Fetched" FetchedChildrenCount="13" Group="Expanded" Label="Program" UseManualLocation="True" />
+    <Node Id="@13" Category="CodeSchema_Class" Bounds="-767.84616254102,-715.944289153182,183.59,85.9602" CodeSchemaProperty_IsPublic="True" DelayedChildNodesState="Fetched" DelayedCrossGroupLinksState="Fetched" FetchedChildrenCount="1" Group="Expanded" Label="SecureFieldAttribute" UseManualLocation="True" />
+    <Node Id="@15" Category="CodeSchema_Class" Bounds="-855.915507023442,-1074.84628508482,362.619051136719,142.470472298828" CodeSchemaProperty_IsPublic="True" DelayedChildNodesState="Incomplete" DelayedCrossGroupLinksState="Fetched" FetchedChildrenCount="8" Group="Expanded" Label="SecureFieldBuilder" UseManualLocation="True" />
+    <Node Id="@18" Category="CodeSchema_Method" Bounds="-559.959961369145,-832.267139892578,54.28,25.96" CodeSchemaProperty_IsPublic="True" DelayedCrossGroupLinksState="Fetched" Label="Xor" UseManualLocation="True" />
+    <Node Id="@19" Category="CodeSchema_Method" Bounds="-259.967672777022,-908.655675885439,62.6152213333332,25.959232" CodeSchemaProperty_IsPrivate="True" CodeSchemaProperty_IsStatic="True" DelayedCrossGroupLinksState="Fetched" Label="Main" UseManualLocation="True" />
+    <Node Id="@2" Category="CodeSchema_Assembly" Bounds="-435.679961369145,-988.655875885439,415.969069776367,259.42531165625" CodeSchemaProperty_StrongName="MonoInjections, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" DelayedChildNodesState="Incomplete" DelayedCrossGroupLinksState="Fetched" FetchedChildrenCount="1" FilePath="$(ec46f423-d757-4dea-a651-9848123a234c.OutputPath)" Group="Expanded" Label="MonoInjections.exe" UseManualLocation="True" />
+    <Node Id="@21" Category="CodeSchema_Method" Bounds="-672.660012638676,-848.688465576172,82.7,25.96" CodeSchemaProperty_IsPrivate="True" DelayedCrossGroupLinksState="Fetched" Label="GetBytes" UseManualLocation="True" />
+    <Node Id="@23" Category="CodeSchema_Method" Bounds="-197.609171592778,-795.19006521875,137.89828,25.959232" CodeSchemaProperty_IsPrivate="True" CodeSchemaProperty_IsStatic="True" DelayedCrossGroupLinksState="Fetched" Label="ReplaceGetMethod" UseManualLocation="True" />
+    <Node Id="@24" Category="CodeSchema_Method" Bounds="-395.679961369145,-795.189996229189,136.039768,25.9592319999999" CodeSchemaProperty_IsPrivate="True" CodeSchemaProperty_IsStatic="True" DelayedCrossGroupLinksState="Fetched" Label="ReplaceSetMethod" UseManualLocation="True" />
+    <Node Id="@25" Category="CodeSchema_Method" Bounds="-292.851329518233,-851.149328229189,128.382565333333,25.9592319999999" CodeSchemaProperty_IsPrivate="True" CodeSchemaProperty_IsStatic="True" DelayedCrossGroupLinksState="Fetched" Label="InjectToAssembly" UseManualLocation="True" />
+    <Node Id="@26" Category="CodeSchema_Method" Bounds="-738.764024631515,-1034.70604836607,115.061405333333,25.959232" CodeSchemaProperty_IsPublic="True" DelayedCrossGroupLinksState="Fetched" Label="GetSecureField" UseManualLocation="True" />
+    <Node Id="@27" Category="CodeSchema_Method" Bounds="-737.42143855339,-978.713746859375,113.202893333333,25.9592319999999" CodeSchemaProperty_IsPublic="True" DelayedCrossGroupLinksState="Fetched" Label="SetSecureField" UseManualLocation="True" />
+    <Node Id="@28" Category="CodeSchema_Field" Bounds="-841.681789982426,-791.904489153182,130.1,25.96" CodeSchemaProperty_IsPrivate="True" DelayedCrossGroupLinksState="Fetched" Label="_serializationType" UseManualLocation="True" />
+    <Node Id="@29" Category="CodeSchema_Field" Bounds="-840.373876570968,-847.864633196151,65.1233333333334,25.96" CodeSchemaProperty_IsPublic="True" DelayedCrossGroupLinksState="Fetched" Label="Bytes" UseManualLocation="True" />
+    <Node Id="@30" Category="CodeSchema_Method" Bounds="-593.702595651046,-1034.84618508482,74.6537573333333,25.959232" CodeSchemaProperty_IsPublic="True" CodeSchemaProperty_IsStatic="True" DelayedCrossGroupLinksState="Fetched" Label="Factory" UseManualLocation="True" />
+    <Node Id="@31" Category="CodeSchema_Field" Bounds="-594.218527886723,-978.746583773437,80.9220720000001,25.9592319999999" CodeSchemaProperty_IsPrivate="True" CodeSchemaProperty_IsStatic="True" DelayedCrossGroupLinksState="Fetched" Label="Instance" UseManualLocation="True" />
+    <Node Id="@32" Category="CodeSchema_Method" Bounds="-668.809963810551,-792.728321533203,78.8499999999999,25.96" CodeSchemaProperty_IsPublic="True" DelayedCrossGroupLinksState="Fetched" Label="ToValue" UseManualLocation="True" />
+    <Node Id="@4" Category="CodeSchema_Assembly" AssemblyTimestamp="06/01/2014 08:40:02" Bounds="-881.681789982426,-1114.84638508482,416.001828613281,504.862395931641" CodeSchemaProperty_StrongName="SecureField, Version=1.0.0.0, Culture=neutral, PublicKeyToken=null" DelayedChildNodesState="Incomplete" DelayedCrossGroupLinksState="Fetched" FetchedChildrenCount="2" FilePath="$(47c86e64-d6b2-45b4-866f-15faa0a77f4b.OutputPath)" Group="Expanded" Label="SecureField.dll" UseManualLocation="True" />
+    <Node Id="@9" Category="CodeSchema_Struct" Bounds="-861.681789982426,-888.688585735213,376.001828613281,142.744196582031" CodeSchemaProperty_IsFinal="True" CodeSchemaProperty_IsPublic="True" DelayedChildNodesState="Incomplete" DelayedCrossGroupLinksState="Fetched" FetchedChildrenCount="7" Group="Expanded" Label="BitValue" UseManualLocation="True" />
   </Nodes>
   <Links>
-    <Link Source="@10" Target="(@1 @5 @9 Member=.ctor)" Category="Contains" FetchingParent="@10" />
-    <Link Source="@10" Target="@15" Category="Contains" FetchingParent="@10" />
-    <Link Source="@10" Target="@17" Category="Contains" FetchingParent="@10" />
-    <Link Source="@10" Target="@18" Category="Contains" FetchingParent="@10" />
-    <Link Source="@10" Target="@19" Category="Contains" FetchingParent="@10" />
-    <Link Source="@11" Target="(@3 @7 Type=SecureFieldAttribute Member=.ctor)" Category="Contains" FetchingParent="@11" />
-    <Link Source="@13" Target="(@3 @7 @12 Member=(Name=GetSecureField OverloadingParameters=[(@14 Namespace=System.Reflection Type=MethodBase),(@14 Namespace=System Type=Object)]))" Category="Contains" FetchingParent="@13" />
-    <Link Source="@13" Target="(@3 @7 @12 Member=(Name=SetSecureField OverloadingParameters=[(@14 Namespace=System.Reflection Type=MethodBase),(@14 Namespace=System Type=Object),(@14 Namespace=System Type=Object)]))" Category="Contains" />
-    <Link Source="@13" Target="@20" Category="Contains" FetchingParent="@13" />
-    <Link Source="@13" Target="@21" Category="Contains" FetchingParent="@13" />
-    <Link Source="@13" Target="@22" Category="Contains" FetchingParent="@13" />
-    <Link Source="@15" Target="@19" Category="CodeSchema_Calls" Bounds="-436.803129013142,-83.1081747475493,2.95657966944418E-05,22.1193774665608" Weight="1" />
-    <Link Source="@19" Target="@17" Category="CodeSchema_Calls" Bounds="-413.609606825144,-26.0295652809965,45.7653791744305,25.6113992787284" Weight="1" />
-    <Link Source="@19" Target="@18" Category="CodeSchema_Calls" Bounds="-504.996157362771,-26.0295652809965,45.2331474982421,25.5710115187887" Weight="1" />
-    <Link Source="@2" Target="@6" Category="Contains" FetchingParent="@2" />
-    <Link Source="@20" Target="@22" Category="CodeSchema_FieldWrite" Bounds="-344.939193376713,-432.711257212279,90.1093599096698,45.0625333818273" Weight="1" />
-    <Link Source="@21" Target="@13" Category="CodeSchema_ReturnTypeLink" Bounds="-183.498687744141,-426.602996826172,36.6341552734375,12.322265625" Weight="1" />
-    <Link Source="@21" Target="@22" Category="CodeSchema_FieldRead" Bounds="-220.825561523438,-413.623374081534,2.8421709430404E-14,21.0001338447265" Weight="1" />
-    <Link Source="@22" Target="@13" Category="References" Bounds="-180.364532470703,-370.643615722656,33.5,12.322265625" Weight="1" />
-    <Link Source="@4" Target="@8" Category="Contains" FetchingParent="@4" />
-    <Link Source="@6" Target="@10" Category="Contains" FetchingParent="@6" />
-    <Link Source="@8" Target="@11" Category="Contains" FetchingParent="@8" />
-    <Link Source="@8" Target="@13" Category="Contains" FetchingParent="@8" />
+    <Link Source="@12" Target="(@1 @10 @11 Member=.ctor)" Category="Contains" FetchingParent="@12" />
+    <Link Source="@12" Target="@19" Category="Contains" FetchingParent="@12" />
+    <Link Source="@12" Target="@23" Category="Contains" FetchingParent="@12" />
+    <Link Source="@12" Target="@24" Category="Contains" FetchingParent="@12" />
+    <Link Source="@12" Target="@25" Category="Contains" FetchingParent="@12" />
+    <Link Source="@13" Target="(@3 @7 Type=SecureFieldAttribute Member=.ctor)" Category="Contains" FetchingParent="@13" />
+    <Link Source="@15" Target="(@3 @7 @14 Member=Hash)" Category="Contains" FetchingParent="@15" />
+    <Link Source="@15" Target="(@3 @7 @14 Member=Rand)" Category="Contains" FetchingParent="@15" />
+    <Link Source="@15" Target="@26" Category="Contains" FetchingParent="@15" />
+    <Link Source="@15" Target="@27" Category="Contains" FetchingParent="@15" />
+    <Link Source="@15" Target="@30" Category="Contains" FetchingParent="@15" />
+    <Link Source="@15" Target="@31" Category="Contains" FetchingParent="@15" />
+    <Link Source="@18" Target="@29" Category="CodeSchema_FieldRead" Bounds="-766.390258789063,-827.499206542969,206.430297851563,7.64337158203125" Weight="2">
+      <Category Ref="CodeSchema_FieldWrite" />
+    </Link>
+    <Link Source="@19" Target="@25" Category="CodeSchema_Calls" Bounds="-228.660058666332,-882.696443885439,5.98267311602285E-06,22.5471156562504" Weight="1" />
+    <Link Source="@2" Target="@12" Category="Contains" />
+    <Link Source="@21" Target="@28" Category="CodeSchema_FieldRead" Bounds="-735.030551673048,-822.728465576172,70.5020716295745,27.5484379998734" Weight="1" />
+    <Link Source="@21" Target="@29" Category="CodeSchema_FieldWrite" Bounds="-766.250641273029,-835.515462489289,93.5906286343526,0.436838699631039" Weight="10" />
+    <Link Source="@25" Target="@23" Category="CodeSchema_Calls" Bounds="-205.465284658021,-825.190096229189,45.7565728647081,25.6050370469068" Weight="1" />
+    <Link Source="@25" Target="@24" Category="CodeSchema_Calls" Bounds="-296.862316673015,-825.190096229189,45.2394799849568,25.571417167756" Weight="1" />
+    <Link Source="@26" Target="@18" Category="CodeSchema_Calls" Bounds="-553.883993466971,-969.983977024484,111.254213148412,201.328888545618" Weight="1" />
+    <Link Source="@26" Target="@32" Category="CodeSchema_Calls" Bounds="-559.2398554451,-969.628859559966,33.1693143235744,236.986532761264" Weight="1" />
+    <Link Source="@27" Target="@18" Category="CodeSchema_Calls" Bounds="-551.259167866571,-913.991667454172,105.497751745931,145.920377040178" Weight="1" />
+    <Link Source="@27" Target="@29" Category="CodeSchema_FieldRead" Bounds="-688.503592972486,-913.222304384185,116.264287336633,130.135488916351" Weight="1" />
+    <Link Source="@27" Target="@32" Category="CodeSchema_Calls" Bounds="-558.380164359247,-913.636549989654,31.5649066815752,181.041096587447" Weight="1" />
+    <Link Source="@30" Target="@15" Category="CodeSchema_ReturnTypeLink" Bounds="-556.375732421875,-1088.34631347656,12.322265625,53.5001220703125" Weight="1" />
+    <Link Source="@30" Target="@31" Category="CodeSchema_FieldRead" Bounds="-555.7699451861,-1008.88695308482,0.987099119152617,21.1501551523805" Weight="1" />
+    <Link Source="@31" Target="@15" Category="References" Bounds="-553.757507324219,-952.787353515625,12.322265625,33.9115600585938" Weight="1" />
+    <Link Source="@32" Target="@28" Category="CodeSchema_FieldRead" Bounds="-702.581930842577,-779.527742302895,33.7719670320255,0.188951033454032" Weight="1" />
+    <Link Source="@32" Target="@29" Category="CodeSchema_FieldRead" Bounds="-766.652840899557,-822.165859315039,98.5837336383189,30.4636404012165" Weight="9" />
+    <Link Source="@4" Target="@13" Category="Contains" />
+    <Link Source="@4" Target="@15" Category="Contains" />
+    <Link Source="@4" Target="@9" Category="Contains" />
+    <Link Source="@9" Target="@18" Category="Contains" FetchingParent="@9" />
+    <Link Source="@9" Target="@21" Category="Contains" FetchingParent="@9" />
+    <Link Source="@9" Target="@28" Category="Contains" FetchingParent="@9" />
+    <Link Source="@9" Target="@29" Category="Contains" FetchingParent="@9" />
+    <Link Source="@9" Target="@32" Category="Contains" FetchingParent="@9" />
   </Links>
   <Categories>
     <Category Id="CodeSchema_Assembly" Label="Assembly" BasedOn="File" CanBeDataDriven="True" DefaultAction="Microsoft.Contains" Icon="CodeSchema_Assembly" NavigationActionLabel="Assemblies" />
@@ -55,8 +76,8 @@
     <Category Id="CodeSchema_FieldWrite" Label="Field Write" BasedOn="CodeSchema_FieldReference" CanBeDataDriven="True" CanLinkedNodesBeDataDriven="True" IncomingActionLabel="Written By" OutgoingActionLabel="Writes Fields" />
     <Category Id="CodeSchema_Member" Label="Member" CanBeDataDriven="True" DefaultAction="Microsoft.Contains" Icon="CodeSchema_Field" NavigationActionLabel="Members" />
     <Category Id="CodeSchema_Method" Label="Method" BasedOn="CodeSchema_Member" CanBeDataDriven="True" DefaultAction="Link:Forward:CodeSchema_Calls" Icon="CodeSchema_Method" NavigationActionLabel="Methods" />
-    <Category Id="CodeSchema_Namespace" Label="Namespace" CanBeDataDriven="True" DefaultAction="Node:Both:CodeSchema_Type" Icon="CodeSchema_Namespace" NavigationActionLabel="Namespaces" />
     <Category Id="CodeSchema_ReturnTypeLink" Label="Return" CanBeDataDriven="True" CanLinkedNodesBeDataDriven="True" IncomingActionLabel="Return types" OutgoingActionLabel="Return types" />
+    <Category Id="CodeSchema_Struct" Label="Struct" BasedOn="CodeSchema_Type" CanBeDataDriven="True" DefaultAction="Node:Both:CodeSchema_Member" Icon="CodeSchema_Struct" NavigationActionLabel="Structs" />
     <Category Id="CodeSchema_Type" Label="Type" CanBeDataDriven="True" DefaultAction="Node:Both:CodeSchema_Member" Icon="CodeSchema_Class" NavigationActionLabel="Types" />
     <Category Id="Contains" Label="Contains" Description="Whether the source of the link contains the target object" CanBeDataDriven="False" CanLinkedNodesBeDataDriven="True" IncomingActionLabel="Contained By" IsContainment="True" OutgoingActionLabel="Contains" />
     <Category Id="File" Label="File" CanBeDataDriven="True" DefaultAction="Microsoft.Contains" Icon="File" NavigationActionLabel="Files" />
@@ -68,6 +89,7 @@
     <Property Id="CanBeDataDriven" Label="CanBeDataDriven" Description="CanBeDataDriven" DataType="System.Boolean" />
     <Property Id="CanLinkedNodesBeDataDriven" Label="CanLinkedNodesBeDataDriven" Description="CanLinkedNodesBeDataDriven" DataType="System.Boolean" />
     <Property Id="CodeSchemaProperty_IsConstructor" Label="Is Constructor" Description="Flag to indicate the method is a constructor" DataType="System.Boolean" />
+    <Property Id="CodeSchemaProperty_IsFinal" Label="Is Final" Description="Flag to indicate the member is 'Final' and cannot be derived from" DataType="System.Boolean" />
     <Property Id="CodeSchemaProperty_IsInternal" Label="Is Internal" Description="Flag to indicate the method is 'Internal'" DataType="System.Boolean" />
     <Property Id="CodeSchemaProperty_IsPrivate" Label="Is Private" Description="Flag to indicate the scope is Private" DataType="System.Boolean" />
     <Property Id="CodeSchemaProperty_IsPublic" Label="Is Public" Description="Flag to indicate the scope is Public" DataType="System.Boolean" />
@@ -114,24 +136,32 @@
     <Alias n="2" Id="(@1)" />
     <Alias n="3" Uri="Assembly=$(47c86e64-d6b2-45b4-866f-15faa0a77f4b.OutputPathUri)" />
     <Alias n="4" Id="(@3)" />
-    <Alias n="5" Id="Namespace=MonoInjections" />
-    <Alias n="6" Id="(@1 @5)" />
     <Alias n="7" Id="Namespace=SecureField" />
-    <Alias n="8" Id="(@3 @7)" />
-    <Alias n="9" Id="Type=Program" />
-    <Alias n="10" Id="(@1 @5 @9)" />
-    <Alias n="11" Id="(@3 @7 Type=SecureFieldAttribute)" />
-    <Alias n="12" Id="Type=SecureFieldBuilder" />
-    <Alias n="13" Id="(@3 @7 @12)" />
-    <Alias n="14" Uri="Assembly=$(FxReferenceAssembliesUri)/.NETFramework/v4.0/mscorlib.dll" />
-    <Alias n="15" Id="(@1 @5 @9 Member=(Name=Main OverloadingParameters=[(@14 Namespace=System Type=(Name=String ArrayRank=1 ParentType=String))]))" />
-    <Alias n="16" Uri="Assembly=$(VsSolutionUri)/MonoInjections/Mono.Cecil.dll" />
-    <Alias n="17" Id="(@1 @5 @9 Member=(Name=ReplaceGetMethod OverloadingParameters=[(@16 Namespace=Mono.Cecil Type=PropertyDefinition)]))" />
-    <Alias n="18" Id="(@1 @5 @9 Member=(Name=ReplaceSetMethod OverloadingParameters=[(@16 Namespace=Mono.Cecil Type=PropertyDefinition)]))" />
-    <Alias n="19" Id="(@1 @5 @9 Member=(Name=InjectToAssembly OverloadingParameters=[(@14 Namespace=System Type=String)]))" />
-    <Alias n="20" Id="(@3 @7 @12 Member=.cctor)" />
-    <Alias n="21" Id="(@3 @7 @12 Member=Factory)" />
-    <Alias n="22" Id="(@3 @7 @12 Member=Instance)" />
+    <Alias n="8" Id="Type=BitValue" />
+    <Alias n="9" Id="(@3 @7 @8)" />
+    <Alias n="10" Id="Namespace=MonoInjections" />
+    <Alias n="11" Id="Type=Program" />
+    <Alias n="12" Id="(@1 @10 @11)" />
+    <Alias n="13" Id="(@3 @7 Type=SecureFieldAttribute)" />
+    <Alias n="14" Id="Type=SecureFieldBuilder" />
+    <Alias n="15" Id="(@3 @7 @14)" />
+    <Alias n="16" Uri="Assembly=$(FxReferenceAssembliesUri)/.NETFramework/v4.0/mscorlib.dll" />
+    <Alias n="17" Id="Namespace=System" />
+    <Alias n="18" Id="(@3 @7 @8 Member=(Name=Xor OverloadingParameters=[(@16 @17 Type=(Name=Byte ArrayRank=1 ParentType=Byte))]))" />
+    <Alias n="19" Id="(@1 @10 @11 Member=(Name=Main OverloadingParameters=[(@16 @17 Type=(Name=String ArrayRank=1 ParentType=String))]))" />
+    <Alias n="20" Id="(@16 @17 Type=Object)" />
+    <Alias n="21" Id="(@3 @7 @8 Member=(Name=GetBytes OverloadingParameters=[@20]))" />
+    <Alias n="22" Uri="Assembly=$(VsSolutionUri)/MonoInjections/Mono.Cecil.dll" />
+    <Alias n="23" Id="(@1 @10 @11 Member=(Name=ReplaceGetMethod OverloadingParameters=[(@22 Namespace=Mono.Cecil Type=PropertyDefinition)]))" />
+    <Alias n="24" Id="(@1 @10 @11 Member=(Name=ReplaceSetMethod OverloadingParameters=[(@22 Namespace=Mono.Cecil Type=PropertyDefinition)]))" />
+    <Alias n="25" Id="(@1 @10 @11 Member=(Name=InjectToAssembly OverloadingParameters=[(@16 @17 Type=String)]))" />
+    <Alias n="26" Id="(@3 @7 @14 Member=(Name=GetSecureField OverloadingParameters=[(@16 Namespace=System.Reflection Type=MethodBase),@20]))" />
+    <Alias n="27" Id="(@3 @7 @14 Member=(Name=SetSecureField OverloadingParameters=[(@16 Namespace=System.Reflection Type=MethodBase),@20,@20]))" />
+    <Alias n="28" Id="(@3 @7 @8 Member=_serializationType)" />
+    <Alias n="29" Id="(@3 @7 @8 Member=Bytes)" />
+    <Alias n="30" Id="(@3 @7 @14 Member=Factory)" />
+    <Alias n="31" Id="(@3 @7 @14 Member=Instance)" />
+    <Alias n="32" Id="(@3 @7 @8 Member=ToValue)" />
   </IdentifierAliases>
   <Styles>
     <Style TargetType="Node" GroupLabel="Results" ValueLabel="True">
@@ -265,7 +295,9 @@
     <Path Id="47c86e64-d6b2-45b4-866f-15faa0a77f4b.OutputPathUri" Value="file:///C:/GitRepository/MonoInjections/Solution/References/SecureField.dll" />
     <Path Id="ec46f423-d757-4dea-a651-9848123a234c.OutputPath" Value="C:\GitRepository\MonoInjections\Solution\MonoInjections\bin\Debug\MonoInjections.exe" />
     <Path Id="ec46f423-d757-4dea-a651-9848123a234c.OutputPathUri" Value="file:///C:/GitRepository/MonoInjections/Solution/MonoInjections/bin/Debug/MonoInjections.exe" />
+    <Path Id="FxReferenceAssemblies" Value="C:\Program Files\Reference Assemblies\Microsoft\Framework" />
     <Path Id="FxReferenceAssembliesUri" Value="file:///C:/Program Files/Reference Assemblies/Microsoft/Framework" />
+    <Path Id="VsSolution" Value="C:\GitRepository\MonoInjections\Solution" />
     <Path Id="VsSolutionUri" Value="file:///C:/GitRepository/MonoInjections/Solution" />
   </Paths>
 </DirectedGraph>
