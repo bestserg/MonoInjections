@@ -11,7 +11,6 @@ namespace SecureField
     {
         public SecureFieldAttribute()
         {
-
         }
     }
 }

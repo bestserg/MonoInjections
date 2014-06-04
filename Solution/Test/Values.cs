@@ -22,8 +22,16 @@ namespace Test
         [SecureField]
         public double DoubleVal { get; set; }
 
+        //private int _value;
+        //public int Value { get { return _value; } set { _value = value; } }
+
         //[SecureField]
-        //public int Number { get; set; }
+        //public int ProtectedValue { get; set; }
+
+        
+
+        [SecureField]
+        public int Number { get; set; }
         //{
         //    get
         //    {
